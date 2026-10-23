@@ -45,11 +45,11 @@ void main() {
 
   
   double price2 = calculateDiscount(price: 100.0, discount: 10.0);
-  print('Final price: $price2');
+  print('Final price with discount: $price2');
 
   
   double price3 = calculateDiscount(price: 100.0, discount: 10.0, tax: 5.0);
-  print('Final price: $price3');
+  print('Final price with discount and tax: $price3');
 
   print('Total function calls: $totalCalls');
 }
