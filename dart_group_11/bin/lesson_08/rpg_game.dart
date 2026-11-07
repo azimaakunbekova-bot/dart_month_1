@@ -6,7 +6,7 @@ class RpgGame {
   static int roundNumber = 0;
 
   static void startGame() {
-    Boss boss = Boss('Dragon', 1000, 50);
+    Boss boss = Boss('Dragon', 8000, 50);
 
     Warrior warrior1 = Warrior('Ahiles', 280, 15);
     Warrior warrior2 = Warrior('Hercules', 290, 10);
@@ -18,7 +18,8 @@ class RpgGame {
     Lucky lucky = Lucky('Loki', 240, 10);
     Witcher witcher = Witcher('Geralt', 250, 15);
     Thor thor = Thor('Thor', 300, 20);
-    List<Hero> heroes = [warrior1, doc, magic, berserk, warrior2, assistant, golem, lucky, witcher, thor];
+    Ludoman ludoman = Ludoman('Dilan', 250, 15);
+    List<Hero> heroes = [warrior1, doc, magic, berserk, warrior2, assistant, golem, lucky, witcher, thor, ludoman];
 
     _showStatistics(boss, heroes);
     while (!_isGameOver(boss, heroes)) {

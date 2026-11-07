@@ -1,6 +1,6 @@
 import 'rpg_game.dart';
 
-enum SuperAbility { heal, boost, criticalDamage, blockRevert, golemDefense, luck,resurrect }
+enum SuperAbility { heal, boost, criticalDamage, blockRevert, golemDefense, luck,resurrect, ludoman }
 
 abstract class GameCharacter {
   String name;
@@ -217,3 +217,35 @@ class Thor extends Hero {
 }
 }
 }
+class Ludoman extends Hero {
+  Ludoman(String name, int health, int damage)
+    : super(name, health, damage, SuperAbility.ludoman);
+
+  @override
+  void hit(Boss boss, List<Hero> heroes) {
+    boss.health -= this.damage;
+  }
+
+  @override
+  void applySuperPower(Boss boss, List<Hero> heroes) {
+    if (this.isAlive() ) {
+      int dice1 = RpgGame.random.nextInt(6) + 1; // 1-6
+      int dice2 = RpgGame.random.nextInt(6) + 1; //
+
+      if (dice1 == dice2) {
+        int damageToBoss = dice1 * dice2;
+        boss.health -=damageToBoss;
+        if(boss !=isAlive());
+        print('Ludoman $name hit z jackpot! Dice:[$dice1,$dice2].Boss loses $damageToBoss HP');
+      }else{
+        int damageToAlly = dice1 + dice2;
+        var aliveHeroes = heroes.where((h) => h.isAlive() && h != this).toList();
+        if (aliveHeroes.isNotEmpty) {
+          var ally = aliveHeroes[RpgGame.random.nextInt(aliveHeroes.length)];
+          ally.health -= damageToAlly;
+          print('Ludoman $name hit a bad roll! Dice:[$dice1,$dice2]. Ally ${ally.name} loses $damageToAlly HP');
+      }
+
+            }      }
+    } 
+  }
